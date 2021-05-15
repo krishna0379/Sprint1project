@@ -18,34 +18,24 @@ import com.capgemini.services.AdminServiceimpl;
 @RestController
 @RequestMapping("/server/admin")
 public class AdminController {
-	
+
 	@Autowired
 	private AdminServiceimpl adminserviceimpl;
-	
+
 	@PostMapping("/addadmin")
 	public String createAdmin(@RequestBody Admin admin) {
 		adminserviceimpl.createAdmin(admin);
 		return "Admin added";
 	}
+
 	@GetMapping("/{userId}")
-	public ResponseEntity<String> viewAdmin(@PathVariable("userId")int userId){
-		adminserviceimpl.findById(userId).getId();
-		return new ResponseEntity<>(HttpStatus.OK);
+	public String getAdminById(@PathVariable int userId) {
+		return adminserviceimpl.findById(userId).getAdminname();
 	}
-	
+
 	@GetMapping("/Admins")
-	public ResponseEntity<List<Admin>> viewAllAdmin(){
-		return new ResponseEntity<>(adminserviceimpl.getAllAdmin(), HttpStatus.OK);
+	public List<Admin> getAdmin() {
+		return adminserviceimpl.getAllAdmin();
 	}
-	
-	
-	
-	/*@PostMapping("/login")
-	public ResponseEntity<String> loginAdmin(@RequestBody Admin admin) {
-		adminserviceimpl.isVaildAdmin(validRequest);
-		return ResponseEntity.ok("User NOt Found!!!");
-	}
-		*/
-		
-		 
+
 }
