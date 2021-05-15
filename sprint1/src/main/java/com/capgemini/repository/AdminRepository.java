@@ -7,6 +7,4 @@ import com.capgemini.entities.Admin;
 
 @Repository
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
-
-	//public Admin findByUserAndPassword(String username, String password);
 }

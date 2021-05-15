@@ -11,7 +11,4 @@ public interface IAdminService {
 	public Admin findById(int userId);
 
 	public List<Admin> getAllAdmin();
-
-	//public boolean isVaildAdmin(String username, String password);
-
 }

@@ -3,8 +3,6 @@ package com.capgemini.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,14 +11,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.entities.Admin;
+import com.capgemini.repository.AdminRepository;
 import com.capgemini.services.AdminServiceimpl;
+import com.capgemini.services.IAdminService;
+
 
 @RestController
-@RequestMapping("/server/admin")
+@RequestMapping("/api/admin")
 public class AdminController {
 
 	@Autowired
-	private AdminServiceimpl adminserviceimpl;
+	AdminServiceimpl adminserviceimpl;
+	
+	@Autowired
+	IAdminService adminservice;
+	
+	@Autowired
+	AdminRepository adminrepository;
 
 	@PostMapping("/addadmin")
 	public String createAdmin(@RequestBody Admin admin) {
@@ -30,7 +37,7 @@ public class AdminController {
 
 	@GetMapping("/{userId}")
 	public String getAdminById(@PathVariable int userId) {
-		return adminserviceimpl.findById(userId).getAdminname();
+		return adminserviceimpl.findById(userId).getName();
 	}
 
 	@GetMapping("/Admins")

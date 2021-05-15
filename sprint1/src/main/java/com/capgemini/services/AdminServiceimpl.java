@@ -14,7 +14,10 @@ public class AdminServiceimpl implements IAdminService {
 
 	
 	@Autowired
-	private AdminRepository adminrepository;
+	AdminRepository adminrepository;
+	
+	@Autowired
+	AdminServiceimpl adminserviceimpl;
 	
 	@Override
 	public boolean createAdmin(Admin admin) {
@@ -39,13 +42,5 @@ public class AdminServiceimpl implements IAdminService {
 		adminrepository.findAll();
 		return null;
 	}
-
-	/*@Override
-	public boolean isVaildAdmin(String username, String password) {
-		// TODO Auto-generated method stub
-		return adminrepository.findByUserAndPassword(username, password)!=null;
-	}*/
-	
-	
 
 }
